@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui"/>
+    <title>Document</title>
+    <style id="style_id">
+        p {margin: 0px;}
+        .messchild
+        {
+       margin:20px;
+            padding:5px;
+            background-color:#fff;
+        }
+    </style>
+</head>
+<body  id="body" style="margin: 0px; overflow-x: hidden; ">
+<div id="messdom" class="test_box" style="height:500px;background-color:#255;position: relative; overflow-y: auto;">正在连接...</div>
+<div style="width: 100%;height: 50px;background-color: #224;box-shadow:14px 11px 27px #888; bottom: 0px;position:fixed;">
+    <div id="text_area"  contenteditable="true" style="float:left;width: 80%;min-height: 100%;background-color: #74b359;"  ></div>
+<div class="send" style="float: left;height: 100%;width:20%">发送</div>
+</div>
+<script id="script1">
+var body_var=document.getElementById("body");
+var ab=12;
+var ws;
+var script_var=document.getElementById("script1");
+    var mess = document.getElementById("messdom");
+function a(){console.log(text);}
+var text="success";
+
+    var text_area=document.getElementById("text_area");
+    if(window.WebSocket){
+        ws = new WebSocket('ws://172.19.9.90:8001');
+
+        document.querySelector(".send").onclick = function(){
+            var time = new Date();
+            console.log(ws.readyState);
+            msg=time+"user："+text_area.innerHTML;
+            ws.send(msg);
+            console.log(msg);
+
+        };
+        ws.onopen = function(e){
+            console.log("连接服务器成功");
+            ws.send("user");
+            mess.innerHTML ="连接成功";
+        };
+        ws.onclose = function(e){
+            console.log("服务器关闭");
+            //ws.send("index1服务器关闭");  不能响应
+        };
+        ws.onerror = function(){
+            console.log("连接出错");
+        };
+        ws.onmessage = function(e){
+            ab+=1;
+            console.log("ab:"+ab);
+            mess.innerHTML +="<div class='messchild'    onclick='a()' >"+"消息："+e.data+"<br>"+"</div>";
+            mess.scrollTop=mess.scrollHeight;
+        }
+    }
+</script>
+</body>
+</html>
