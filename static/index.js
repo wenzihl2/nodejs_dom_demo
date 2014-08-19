@@ -1,8 +1,8 @@
-$(document).ready(function(){
+﻿$(document).ready(function(){
 
     header.innerHTML='<button onclick="toindex()">主页</button><button onclick="toabout()">关于</button><button onclick="tochart()">聊天室</button><button onclick="toajax()">获得ajax</button><button onclick="tologin()">登录</button><button onclick="toabout()">关于</button><button onclick="toindex()">主页</button><button onclick="toabout()">关于</button><button onclick="toindex()">主页</button><button onclick="toabout()">关于</button>';
     footer.innerHTML='<div style="text-align: center;">this is footer</div>';
-    content.style.minHeight=(window.innerHeight-100).toString()+'px';
+    document.getElementById('content').style.minHeight=(window.innerHeight-100).toString()+'px';
     $(window).resize(function() {
         content.style.minHeight=(window.innerHeight-100).toString()+'px';
     });

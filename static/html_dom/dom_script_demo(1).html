@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
+<title></title>
+</head><style>
+button{
+	margin:0px}
+.butt{
+	background-color:#366666;
+	}
+	.buttchose{background-color:#0C9;
+	
+	}</style>
+<body>
+
+<script>
+document.body.innerHTML='<button class="butt"  id="btn1">change  src</button><button class="butt" id="btn2">btn2</button><button class="butt" id="btn3">append</button><button class="butt" id="btn4">append2</button><button class="butt" id="btn5">rmove2</button><button class="butt" id="btn6">show</button><input id="inp"></input>';
+var abc=50;
+var domscrip=document.createElement("script");
+var domscrip2=document.createElement("script");
+domscrip.src='./dom_script_demo.js';
+domscrip2.src='./dom_script_demo2.js';
+chosemenu=function(butchose){
+	var a=document.getElementsByClassName('buttchose');
+	for (i=0;i<a.length;i++)
+		a[i].setAttribute('class','butt');
+		butchose.setAttribute('class','buttchose');
+}
+document.getElementById('btn1').onclick=function(){
+	chosemenu(this);
+		
+	
+	domscrip.src='./dom_script_demo.js';
+};
+document.getElementById('btn2').onclick=function(){
+	chosemenu(this);
+	domscrip.src='./dom_script_demo2.js';
+}
+document.getElementById('btn3').onclick=function(){
+	chosemenu(this);
+	document.body.appendChild(domscrip);
+}
+document.getElementById('btn4').onclick=function(){
+	chosemenu(this);
+	document.body.appendChild(domscrip2);
+}
+document.getElementById('btn5').onclick=function(){
+	chosemenu(this);
+	document.body.removeChild(domscrip2);
+}
+document.getElementById('btn6').onclick=function(){
+	chosemenu(this);
+	document.getElementById('inp').value=abc;
+}
+</script>
+</body>
+</html>
