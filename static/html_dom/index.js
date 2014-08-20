@@ -5,11 +5,20 @@ e_header.setAttribute('class','header');
 e_footer.setAttribute('class','footer');
 var e_index=document.createElement('div');
 var e_about=document.createElement('div');
-var e_chat=document.createElement('div');
+var e_chat=document.createElement('div'); 
+var e_frame=document.createElement('frameset'); 
+var e_frame1=document.createElement('frame'); 
+var e_frame2=document.createElement('frame'); 
+e_frame.setAttribute('cols','25%,50%');
+
+e_frame1.setAttribute('src','./dom_script_demo(1).html');
+e_frame2.setAttribute('src','./dom_script_demo(1).html');
+e_frame.appendChild(e_frame1);
+e_frame.appendChild(e_frame2);
 document.body.appendChild(e_header);
 document.body.appendChild(e_content);
 document.body.appendChild(e_footer);
-e_header.innerHTML='<button onclick="toindex()">主页</button><button onclick="toabout()">关于</button><button onclick="tochart()">聊天室</button><button onclick="toajax()">获得ajax</button><button onclick="tologin()">登录</button><button onclick="toabout()">关于</button><button onclick="toindex()">主页</button><button onclick="toabout()">关于</button><button onclick="toindex()">主页</button><button onclick="toabout()">关于</button>';
+e_header.innerHTML='<button onclick="toindex()">主页</button><button onclick="toabout()">关于</button><button onclick="tochart()">聊天室</button><button onclick="toajax()">获得ajax</button><button onclick="toframe()">frame</button><button onclick="toabout()">关于</button><button onclick="toindex()">主页</button><button onclick="toabout()">关于</button><button onclick="toindex()">主页</button><button onclick="toabout()">关于</button>';
 e_footer.innerHTML='<div style="text-align: center;">this is footer</div>';
 var pageWidth = window.innerWidth;
 var pageHeight = window.innerHeight;
@@ -22,7 +31,7 @@ if(typeof pageWidth != "number"){
         pageHeight = document.body.clientHeight;
     }
 }
-e_content.style.minHeight=(pageHeight-e_header.offsetHeight-e_footer.offsetHeight).toString()+'px';
+e_content.style.height=(pageHeight-e_header.offsetHeight-e_footer.offsetHeight).toString()+'px';
     $(window).resize(function() {
         pageWidth = window.innerWidth;
         pageHeight = window.innerHeight;
@@ -59,6 +68,9 @@ function toabout(){
         $( "#dialog" ).dialog();
     });
 }
+function toframe(){
+	e_content.replaceChild(e_frame,e_content.firstChild);
+	}
 var ws;
 function tochart(){
     e_content.replaceChild(e_chat,e_content.firstChild);
